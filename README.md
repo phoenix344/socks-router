@@ -2,12 +2,12 @@
 A wrapper on top of the socksv5 server to attach multiple components more easily
 
 ```javascript
-const { auth, createRouter, routeThrough, blacklist, whitelist } = require("universal-router");
+const { auth, createServer, routeThrough, blacklist, whitelist } = require("universal-router");
 
 // es6/typescript compatible
-// import { auth, createRouter, routeThrough, blacklist, whitelist } from "universal-router";
+// import { auth, createServer, routeThrough, blacklist, whitelist } from "universal-router";
 
-const router = createRouter([
+const server = createServer([
 
     // deny every domains in the blacklist (specify with port)
     blacklist(['example1.com', 'example2.com:80']),
@@ -23,10 +23,9 @@ const router = createRouter([
 
     // routing connection for any destination port
     routeThrough('any')
-]);
+], { auths: [auth.None()] });
 
-router.useAuth(auth.None());
-router.listen(1080, "localhost", () => {
+server.listen(1080, "localhost", () => {
     console.log("socks5 router is listening on port 1080");
 });
 ```

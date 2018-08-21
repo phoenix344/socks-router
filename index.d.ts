@@ -1,7 +1,7 @@
 
 declare module "universal-router" {
     import { Socket } from "net";
-    import { Server } from "socksv5";
+    import { Server as SocksServer } from "socksv5";
     export { auth } from "socksv5";
 
     interface SocksRouteInfo {
@@ -24,7 +24,7 @@ declare module "universal-router" {
         (info: SocksRouteInfo, accept: AcceptCallback, deny: DenyCallback): boolean;
     }
 
-    export class Router extends Server {
+    export class Server extends SocksServer {
         constructor(options?: SocksServerOptions);
         constructor(routes?: SocksConnectionListener[], options?: SocksServerOptions);
 
@@ -33,7 +33,7 @@ declare module "universal-router" {
         clearRoutes(): this;
     }
 
-    export function createRouter(routes?: SocksConnectionListener[]): SocksConnectionListener;
+    export function createServer(routes?: SocksConnectionListener[]): SocksConnectionListener;
 
     export function routeThrough(port?: number | 'any'): SocksConnectionListener;
     export function blacklist(addresses?: string[]): SocksConnectionListener;

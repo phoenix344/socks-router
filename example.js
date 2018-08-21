@@ -1,7 +1,6 @@
-const { auth, createRouter, routeThrough, blacklist, whitelist } = require("./index");
-// import { auth, createRouter, routeThrough, blacklist, whitelist } from "universal-router";
+const { auth, createServer, routeThrough, blacklist, whitelist } = require("./index");
 
-const router = createRouter([
+const server = createServer([
 
     // deny every domains in the blacklist (specify with port)
     blacklist(['example1.com', 'example2.com:80']),
@@ -17,9 +16,8 @@ const router = createRouter([
 
     // routing connection for any destination port
     routeThrough('any')
-]);
+], { auths: [auth.None()] });
 
-router.useAuth(auth.None());
-router.listen(1080, "localhost", () => {
+server.listen(1080, "localhost", () => {
     console.log("socks5 router is listening on port 1080");
 });

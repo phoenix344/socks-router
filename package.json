@@ -7,7 +7,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["socks5", "dns", "stream", "router"],
+  "keywords": [
+    "socks5",
+    "dns",
+    "stream",
+    "router"
+  ],
   "author": "phoenix344",
   "license": "MIT",
   "dependencies": {
