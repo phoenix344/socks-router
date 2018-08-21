@@ -1,5 +1,5 @@
 {
-  "name": "universal-router",
+  "name": "universal-socks-router",
   "version": "1.0.0",
   "description": "A wrapper on top of the socksv5 server to attach multiple components more easily",
   "main": "index.js",
