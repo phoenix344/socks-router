@@ -1,0 +1,19 @@
+{
+  "name": "universal-router",
+  "version": "1.0.0",
+  "description": "A wrapper on top of the socksv5 server to attach multiple components more easily",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["socks5", "dns", "stream", "router"],
+  "author": "phoenix344",
+  "license": "MIT",
+  "dependencies": {
+    "socksv5": "git+https://github.com/phoenix344/socksv5.git"
+  },
+  "devDependencies": {
+    "@types/node": "^10.7.0"
+  }
+}
