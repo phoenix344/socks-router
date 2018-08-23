@@ -1,5 +1,5 @@
 {
-  "name": "universal-socks-router",
+  "name": "@phoenix344/socks-router",
   "version": "1.0.0",
   "description": "A wrapper on top of the socksv5 server to attach multiple components more easily",
   "main": "index.js",
@@ -19,6 +19,6 @@
     "socksv5": "git+https://github.com/phoenix344/socksv5.git"
   },
   "devDependencies": {
-    "@types/node": "^10.7.0"
+    "@types/node": "^10.7.1"
   }
 }
