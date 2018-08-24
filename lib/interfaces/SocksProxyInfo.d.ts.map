@@ -1,0 +1,1 @@
+{"version":3,"file":"SocksProxyInfo.d.ts","sourceRoot":"","sources":["../../src/interfaces/SocksProxyInfo.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,cAAc;IAC3B,GAAG,EAAE,MAAM,CAAC;IACZ,OAAO,CAAC,EAAE,MAAM,GAAG,SAAS,CAAC;IAC7B,OAAO,CAAC,EAAE,MAAM,GAAG,SAAS,CAAC;IAC7B,OAAO,EAAE,MAAM,CAAC;IAChB,OAAO,EAAE,MAAM,CAAC;CACnB"}

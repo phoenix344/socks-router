@@ -1,0 +1,1 @@
+{"version":3,"file":"SocksAcceptCallback.d.ts","sourceRoot":"","sources":["../../src/interfaces/SocksAcceptCallback.ts"],"names":[],"mappings":";AAAA,OAAO,EAAE,MAAM,EAAE,MAAM,KAAK,CAAC;AAE7B,MAAM,WAAW,mBAAmB;IAChC,CAAC,SAAS,CAAC,EAAE,KAAK,GAAG,IAAI,CAAC;IAC1B,CAAC,SAAS,EAAE,IAAI,GAAG,MAAM,CAAC;CAC7B"}

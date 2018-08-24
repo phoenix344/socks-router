@@ -1,4 +1,4 @@
-const { auth, createServer, routeThrough, blacklist, whitelist } = require("./index");
+const { auth, createServer, through, blacklist, whitelist } = require("./index");
 
 const server = createServer([
 
@@ -9,13 +9,13 @@ const server = createServer([
     // whitelist(['example1.com', 'example2.com:80']),
 
     // only routing connections with destination port 443
-    routeThrough(443),
+    through(443),
 
     // only routing connections with destination port 80
-    routeThrough(80),
+    through(80),
 
     // routing connection for any destination port
-    routeThrough('any')
+    through('any')
 ], { auths: [auth.None()] });
 
 server.listen(1080, "localhost", () => {

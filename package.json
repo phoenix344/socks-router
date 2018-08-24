@@ -1,24 +1,24 @@
 {
-  "name": "universal-socks-router",
+  "name": "@outtacontrol/socks-router",
   "version": "1.0.0",
-  "description": "A wrapper on top of the socksv5 server to attach multiple components more easily",
-  "main": "index.js",
+  "description": "routes requests on the socks v5 server.",
+  "main": "lib/index.js",
   "types": "index.d.ts",
   "scripts": {
+    "build": "tsc",
+    "start": "tsc -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "socks5",
-    "dns",
-    "stream",
+    "network",
     "router"
   ],
   "author": "phoenix344",
   "license": "MIT",
-  "dependencies": {
-    "socksv5": "git+https://github.com/phoenix344/socksv5.git"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@types/node": "^10.7.0"
+    "@types/node": "^10.7.0",
+    "typescript": "^3.0.1"
   }
 }
