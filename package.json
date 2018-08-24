@@ -10,7 +10,7 @@
   "scripts": {
     "build": "tsc",
     "start": "tsc -w",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/test"
   },
   "keywords": [
     "socks5",
@@ -22,6 +22,7 @@
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^10.7.0",
+    "fakesocket": "0.0.1",
     "typescript": "^3.0.1"
   }
 }

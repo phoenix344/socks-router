@@ -1,8 +1,5 @@
 
 import { Route } from './interfaces/Route';
-import { SocksProxyInfo } from "./interfaces/SocksProxyInfo";
-import { SocksAcceptCallback } from "./interfaces/SocksAcceptCallback";
-import { SocksDenyCallback } from "./interfaces/SocksDenyCallback";
 import { SocksConnectionCallback } from "./interfaces/SocksConnectionCallback";
 import { isUriValid } from "./util/isUriValid";
 
@@ -18,36 +15,38 @@ export class Router {
         this.routes.push(route);
     }
 
-    public async connectionHandler(info: SocksProxyInfo, accept: SocksAcceptCallback, deny: SocksDenyCallback): Promise<void> {
-        for (const route of this.routes) {
-            if (!isUriValid(info, route.uri)) {
-                // domain/ip/port pattern is not allowed
-                deny();
-                return;
-            }
-
-            const valid = route.validate ? await route.validate(info) : undefined;
-            if (valid === false) {
-                // filter denied access
-                deny();
-                return;
-            }
-
-            else if (valid === true) {
-                if (route.execute) {
-                    await route.execute(info, accept(true));
+    public getHandler(): SocksConnectionCallback {
+        return async (info, accept, deny) => {
+            for (const route of this.routes) {
+                const validDomain = isUriValid(info, route.uri);
+                if (!validDomain) {
+                    // domain/ip/port will be ignored for this operation
+                    continue;
+                }
+    
+                const validated = route.validate ? await route.validate(info) : undefined;
+                if (validated === false) {
+                    // filter denied access
+                    deny();
                     return;
                 }
+    
+                else if (validated === true) {
+                    if (route.execute) {
+                        await route.execute(info, accept(true));
+                        return;
+                    }
+                }
             }
+            accept();
         }
-        accept();
     }
 
 }
 
-export function createRouter(routes: Route[] = []): SocksConnectionCallback & Router {
+export function createRouter(routes: Route[] = []): Router {
     let router = new Router(routes);
-    return Object.assign(router.connectionHandler.bind(router), router);
+    return router;
 }
 
 export default createRouter;
