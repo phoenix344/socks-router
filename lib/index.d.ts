@@ -10,4 +10,5 @@ export declare class Router {
     connectionHandler(info: SocksProxyInfo, accept: SocksAcceptCallback, deny: SocksDenyCallback): Promise<void>;
 }
 export declare function createRouter(routes?: Route[]): SocksConnectionCallback & Router;
+export default createRouter;
 //# sourceMappingURL=index.d.ts.map

@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "routes requests on the socks v5 server.",
   "main": "lib/index.js",
-  "types": "index.d.ts",
+  "types": "lib/index.d.ts",
+  "engines": {
+    "node": ">=10"
+  },
   "scripts": {
     "build": "tsc",
     "start": "tsc -w",

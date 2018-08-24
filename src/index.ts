@@ -49,3 +49,5 @@ export function createRouter(routes: Route[] = []): SocksConnectionCallback & Ro
     let router = new Router(routes);
     return Object.assign(router.connectionHandler.bind(router), router);
 }
+
+export default createRouter;
