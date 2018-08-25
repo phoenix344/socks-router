@@ -1,17 +1,21 @@
-const { readdirSync } = require('fs');
-const { join } = require('path');
-const files = readdirSync(__dirname).filter(file => file.lastIndexOf('.spec.js'));
+const cluster = require('cluster');
 
-process.on('unhandledRejection', (err, p) => {
-    console.error('(ノಠ益ಠ)ノ彡┻━┻');
-    console.error(err.stack);
-});
+if (cluster.isMaster) {
+    const { readdirSync } = require('fs');
+    const files = readdirSync(__dirname).filter(file => file.slice(file.lastIndexOf('.spec.js')) === '.spec.js');
+    for (const file of files) {
+        cluster.fork({ testFile: file });
+    }
+} else {
+    const { join } = require('path');
+    process.on('unhandledRejection', (err, p) => {
+        console.error(`(ノಠ益ಠ)ノ彡┻━┻ ${process.env.testFile}`);
+        console.error(err.stack);
+        process.exit(1);
+    });
 
-const testCases = [];
-for (const file of files) {
-    testCases.push.apply(testCases, require(join(__dirname, file)));
+    Promise.all(require(join(__dirname, process.env.testFile))).then(() => {
+        console.log(`ヾ(⌐■_■)ノ♪ ${process.env.testFile}`);
+        process.exit();
+    });
 }
-
-Promise.all(testCases).then(() => {
-    console.log("ヾ(⌐■_■)ノ♪");
-});

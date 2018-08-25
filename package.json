@@ -1,6 +1,6 @@
 {
   "name": "@outtacontrol/socks-router",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "routes requests on the socks v5 server.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -29,7 +29,6 @@
   },
   "devDependencies": {
     "@types/node": "^10.7.0",
-    "fakesocket": "0.0.1",
     "typescript": "^3.0.1"
   }
 }

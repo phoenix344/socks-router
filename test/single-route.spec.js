@@ -1,5 +1,5 @@
 const assert = require('assert');
-const FakeSocket = require('fakesocket');
+const { Socket } = require('net');
 const { createRouter } = require('../lib');
 
 const testCases = [];
@@ -49,7 +49,7 @@ testCases.push((async function testValidateExecute() {
         },
         async execute(info, socket) {
             assert.deepEqual(info, { dstAddr: 'example.com', dstPort: 80 });
-            assert.ok(socket instanceof FakeSocket, "socket must be defined");
+            assert.ok(socket instanceof Socket, "socket must be defined");
             callExecuteAmount++;
         }
     });
@@ -59,7 +59,7 @@ testCases.push((async function testValidateExecute() {
     await handler({ dstAddr: 'example.com', dstPort: 80 }, (intercept) => {
         assert.ok(intercept, "intercept must be true");
         callAcceptAmount++;
-        return new FakeSocket();
+        return new Socket();
     }, () => callDenyAmount++);
 
     assert.ok(callAcceptAmount === 1, "accept callback must be called once!");
