@@ -6,7 +6,8 @@ export function isUriValid(info: SocksProxyInfo, uri?: Url): boolean {
         if ('string' === typeof uri.hostname) {
             const hostname = '.' + uri.hostname;
             const addrname = '.' + info.dstAddr;
-            if (addrname.lastIndexOf(hostname) < 0) {
+            const index = addrname.lastIndexOf(hostname);
+            if (index < 0 || addrname.slice(index).length > hostname.length) {
                 return false;
             }
         }

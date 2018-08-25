@@ -1,30 +1,31 @@
 # Universal Router
-A wrapper on top of the socksv5 server to attach multiple components more easily
+Easier way to add routing functionality on top of the socks5 webserver.
 
 ```javascript
-const { auth, createServer, routeThrough, blacklist, whitelist } = require("universal-router");
+const { createServer } = require("@outtacontrol/socks");
 
-// es6/typescript compatible
-// import { auth, createServer, routeThrough, blacklist, whitelist } from "universal-router";
+const { createRouter } = require("./lib/index");
+const { blacklist } = require("./lib/validators/blacklist");
+// const { whitelist } = require("./lib/validators/blacklist");
 
-const server = createServer([
+const app = createRouter();
 
-    // deny every domains in the blacklist (specify with port)
-    blacklist(['example1.com', 'example2.com:80']),
+app.use(blacklist(['example1.com', 'example2.com:80']));
+// app.use(whitelist(['example1.com', 'example2.com:80']));
 
-    // // deny every domains not in the whitelist (specify with port)
-    // whitelist(['example1.com', 'example2.com:80']),
+// app.use({
+//     uri: {hostname: "...", port: "8080"},
+//     validate(info) {
+//         // // no return or empty return is just continuing the loop
+//         // return true; // executes the interception method
+//         // return false; // denies access
+//     },
+//     execute(info, socket) {
+//         // do something with the socket...
+//     }
+// });
 
-    // only routing connections with destination port 443
-    routeThrough(443),
-
-    // only routing connections with destination port 80
-    routeThrough(80),
-
-    // routing connection for any destination port
-    routeThrough('any')
-], { auths: [auth.None()] });
-
+const server = createServer({ auths: [auth.None()] }, app.getHandler());
 server.listen(1080, "localhost", () => {
     console.log("socks5 router is listening on port 1080");
 });

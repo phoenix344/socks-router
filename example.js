@@ -1,23 +1,27 @@
-const { auth, createServer, through, blacklist, whitelist } = require("./index");
+const { createServer } = require("@outtacontrol/socks");
 
-const server = createServer([
+const { createRouter } = require("./lib/index");
+const { blacklist } = require("./lib/validators/blacklist");
+// const { whitelist } = require("./lib/validators/blacklist");
 
-    // deny every domains in the blacklist (specify with port)
-    blacklist(['example1.com', 'example2.com:80']),
+const app = createRouter();
 
-    // // deny every domains not in the whitelist (specify with port)
-    // whitelist(['example1.com', 'example2.com:80']),
+app.use(blacklist(['example1.com', 'example2.com:80']));
+// app.use(whitelist(['example1.com', 'example2.com:80']));
 
-    // only routing connections with destination port 443
-    through(443),
+// app.use({
+//     uri: {hostname: "...", port: "8080"},
+//     validate(info) {
+//         // // no return or empty return is just continuing the loop
+//         // return true; // executes the interception method
+//         // return false; // denies access
+//     },
+//     execute(info, socket) {
+//         // do something with the socket...
+//     }
+// });
 
-    // only routing connections with destination port 80
-    through(80),
-
-    // routing connection for any destination port
-    through('any')
-], { auths: [auth.None()] });
-
+const server = createServer({ auths: [auth.None()] }, app.getHandler());
 server.listen(1080, "localhost", () => {
     console.log("socks5 router is listening on port 1080");
 });
