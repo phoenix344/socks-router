@@ -15,12 +15,16 @@ app.use(blacklist(['example1.com', 'example2.com:80']));
 
 // app.use({
 //     uri: {hostname: "...", port: "8080"},
-//     validate(info) {
+//
+//     async initialize() {
+//         // ... some initialization code (only executed once before an action takes place on the route)
+//     },
+//     async validate(info) {
 //         // // no return or empty return is just continuing the loop
 //         // return true; // executes the interception method
 //         // return false; // denies access
 //     },
-//     intercept(info, socket) {
+//     asnyc intercept(info, socket) {
 //         // do something with the socket...
 //     }
 // });
