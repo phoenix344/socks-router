@@ -1,23 +1,30 @@
 
-import { Route } from './interfaces/Route';
+import { SocksRoute } from './interfaces/SocksRoute';
 import { SocksConnectionCallback } from "./interfaces/SocksConnectionCallback";
 import { isUriValid } from "./util/isUriValid";
 
 export class Router {
 
-    private routes: Route[];
+    private routes: SocksRoute[];
 
-    public constructor(routes: Route[] = []) {
+    public constructor(routes: SocksRoute[] = []) {
         this.routes = routes;
     }
 
-    public use(route: Route): void {
+    public use(route: SocksRoute): void {
         this.routes.push(route);
     }
 
     public getHandler(): SocksConnectionCallback {
         return async (info, accept, deny) => {
             for (const route of this.routes) {
+
+                // execute bootstrap code if exist
+                if (route.initialize && !route.isReady) {
+                    await route.initialize();
+                    route.isReady = true;
+                }
+
                 const validDomain = isUriValid(info, route.uri);
                 if (!validDomain) {
                     // domain/ip/port will be ignored for this operation
@@ -32,8 +39,8 @@ export class Router {
                 }
     
                 else if (validated === true) {
-                    if (route.execute) {
-                        await route.execute(info, accept(true));
+                    if (route.intercept) {
+                        await route.intercept(info, accept(true));
                         return;
                     }
                 }
@@ -44,7 +51,7 @@ export class Router {
 
 }
 
-export function createRouter(routes: Route[] = []): Router {
+export function createRouter(routes: SocksRoute[] = []): Router {
     let router = new Router(routes);
     return router;
 }

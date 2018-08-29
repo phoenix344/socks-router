@@ -29,7 +29,7 @@ testCases.push((async function testLastMatch() {
             callValidateAmount++;
             return true;
         },
-        async execute() {
+        async intercept() {
             callExecuteAmount++;
         }
     })
@@ -75,7 +75,7 @@ testCases.push((async function testIgnoreLast() {
             callValidateAmount++;
             return true;
         },
-        async execute() {
+        async intercept() {
             callExecuteAmount++;
         }
     })
@@ -122,7 +122,7 @@ testCases.push((async function testAbortAfterDeny() {
             callValidateAmount++;
             return true;
         },
-        async execute() {
+        async intercept() {
             callExecuteAmount++;
         }
     })

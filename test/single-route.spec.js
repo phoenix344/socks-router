@@ -16,7 +16,7 @@ testCases.push((async function testValidateAccept() {
         async validate() {
             callValidateAmount++;
         },
-        async execute() {
+        async intercept() {
             callExecuteAmount++;
         }
     });
@@ -35,7 +35,7 @@ testCases.push((async function testValidateAccept() {
 })());
 
 // host/port not defined => validate/execute
-testCases.push((async function testValidateExecute() {
+testCases.push((async function testValidateintercept() {
     const app = createRouter();
     let callAcceptAmount = 0;
     let callDenyAmount = 0;
@@ -47,7 +47,7 @@ testCases.push((async function testValidateExecute() {
             callValidateAmount++;
             return true;
         },
-        async execute(info, socket) {
+        async intercept(info, socket) {
             assert.deepEqual(info, { dstAddr: 'example.com', dstPort: 80 });
             assert.ok(socket instanceof Socket, "socket must be defined");
             callExecuteAmount++;
@@ -81,7 +81,7 @@ testCases.push((async function testValidateDeny() {
             callValidateAmount++;
             return false;
         },
-        async execute() {
+        async intercept() {
             callExecuteAmount++;
         }
     });
@@ -113,7 +113,7 @@ testCases.push((async function testHostValidateAccept() {
         async validate() {
             callValidateAmount++
         },
-        async execute() {
+        async intercept() {
             callExecuteAmount++;
         }
     });
@@ -144,7 +144,7 @@ testCases.push((async function testPortValidateAccept() {
         async validate() {
             callValidateAmount++
         },
-        async execute() {
+        async intercept() {
             callExecuteAmount++;
         }
     });
@@ -175,7 +175,7 @@ testCases.push((async function testHostIgnoreAccept() {
         async validate() {
             callValidateAmount++
         },
-        async execute() {
+        async intercept() {
             callExecuteAmount++;
         }
     });
@@ -206,7 +206,7 @@ testCases.push((async function testPortIgnoreAccept() {
         async validate() {
             callValidateAmount++
         },
-        async execute() {
+        async intercept() {
             callExecuteAmount++;
         }
     });

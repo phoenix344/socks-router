@@ -1,0 +1,1 @@
+{"version":3,"file":"SocksRouteValidator.d.ts","sourceRoot":"","sources":["../../src/interfaces/SocksRouteValidator.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,cAAc,EAAE,MAAM,kBAAkB,CAAC;AAElD,MAAM,WAAW,mBAAmB;IAChC,CAAC,IAAI,EAAE,cAAc,GAAG,OAAO,CAAC,OAAO,GAAG,IAAI,CAAC,CAAC;CACnD"}

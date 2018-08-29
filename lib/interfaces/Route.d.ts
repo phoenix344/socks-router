@@ -1,10 +1,10 @@
 /// <reference types="node" />
 import { Url } from "url";
-import { Validator } from "./Validator";
 import { Execute } from "./Execute";
 export interface Route {
     uri?: Url;
-    validate?: Validator;
+    initialize?: ?validate;
+    Validator: any;
     execute?: Execute;
 }
 //# sourceMappingURL=Route.d.ts.map

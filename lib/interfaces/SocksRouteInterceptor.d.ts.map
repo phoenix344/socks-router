@@ -1,0 +1,1 @@
+{"version":3,"file":"SocksRouteInterceptor.d.ts","sourceRoot":"","sources":["../../src/interfaces/SocksRouteInterceptor.ts"],"names":[],"mappings":";AAAA,OAAO,EAAE,cAAc,EAAE,MAAM,kBAAkB,CAAC;AAClD,OAAO,EAAE,MAAM,EAAE,MAAM,KAAK,CAAC;AAE7B,MAAM,WAAW,qBAAqB;IAClC,CAAC,IAAI,EAAE,cAAc,EAAE,MAAM,EAAE,MAAM,GAAG,OAAO,CAAC,IAAI,CAAC,CAAC;CACzD"}

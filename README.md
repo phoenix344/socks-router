@@ -20,7 +20,7 @@ app.use(blacklist(['example1.com', 'example2.com:80']));
 //         // return true; // executes the interception method
 //         // return false; // denies access
 //     },
-//     execute(info, socket) {
+//     intercept(info, socket) {
 //         // do something with the socket...
 //     }
 // });

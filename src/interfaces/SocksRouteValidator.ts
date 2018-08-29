@@ -1,5 +1,5 @@
 import { SocksProxyInfo } from "./SocksProxyInfo";
 
-export interface Validator {
+export interface SocksRouteValidator {
     (info: SocksProxyInfo): Promise<boolean | void>;
 }

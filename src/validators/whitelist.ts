@@ -1,8 +1,8 @@
 import { parse } from "url";
-import { Route } from "../interfaces/Route";
+import { SocksRoute } from "../interfaces/SocksRoute";
 import { isUriValid } from "../util/isUriValid";
 
-export function whitelist(list: string[]): Route {
+export function whitelist(list: string[]): SocksRoute {
     return {
         async validate(info) {
             const entry = list.find(domain => isUriValid(info, parse(domain)));
