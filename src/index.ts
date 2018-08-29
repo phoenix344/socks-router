@@ -1,7 +1,25 @@
 
-import { SocksRoute } from './interfaces/SocksRoute';
 import { SocksConnectionCallback } from "./interfaces/SocksConnectionCallback";
+import { SocksAcceptCallback } from "./interfaces/SocksAcceptCallback";
+import { SocksDenyCallback } from "./interfaces/SocksDenyCallback";
+import { SocksProxyInfo } from "./interfaces/SocksProxyInfo";
+import { SocksRoute } from "./interfaces/SocksRoute";
+import { SocksRouteInitialize } from "./interfaces/SocksRouteInitialize";
+import { SocksRouteInterceptor } from "./interfaces/SocksRouteInterceptor";
+import { SocksRouteValidator } from "./interfaces/SocksRouteValidator";
 import { isUriValid } from "./util/isUriValid";
+
+export {
+    SocksConnectionCallback,
+    SocksAcceptCallback,
+    SocksDenyCallback,
+    SocksProxyInfo,
+    SocksRoute,
+    SocksRouteInitialize,
+    SocksRouteInterceptor,
+    SocksRouteValidator,
+    isUriValid
+}
 
 export class Router {
 
@@ -30,14 +48,14 @@ export class Router {
                     // domain/ip/port will be ignored for this operation
                     continue;
                 }
-    
+
                 const validated = route.validate ? await route.validate(info) : undefined;
                 if (validated === false) {
                     // filter denied access
                     deny();
                     return;
                 }
-    
+
                 else if (validated === true) {
                     if (route.intercept) {
                         await route.intercept(info, accept(true));
