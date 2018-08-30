@@ -1,6 +1,6 @@
 {
   "name": "@outtacontrol/socks-router",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "routes requests on the socks v5 server.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -12,23 +12,22 @@
     "start": "tsc -w",
     "test": "node test/test"
   },
-  "keywords": [
-    "socks5",
-    "network",
-    "router"
-  ],
-  "author": "phoenix344",
-  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/phoenix344/socks-router.git"
   },
+  "keywords": [],
+  "author": "phoenix344",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/phoenix344/socks-router/issues"
+  },
+  "homepage": "https://github.com/phoenix344/socks-router#readme",
   "dependencies": {},
   "optionalDependencies": {
     "@outtacontrol/socks": "^1.0.3"
   },
   "devDependencies": {
-    "@types/node": "^10.7.0",
-    "typescript": "^3.0.1"
+    "@types/node": "^10.7.0"
   }
 }
