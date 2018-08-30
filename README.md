@@ -1,4 +1,4 @@
-# Universal Router
+# socks-router
 Easier way to add routing functionality on top of the socks5 webserver.
 
 ```javascript
